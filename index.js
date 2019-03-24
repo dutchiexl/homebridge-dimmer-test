@@ -112,5 +112,5 @@ NealimmerAccessory.prototype.setSaturation = function (saturation, callback, con
 };
 
 NealimmerAccessory.prototype.getServices = function () {
-    return [this.service];
+    return [this.service, this.FireplaceService];
 };
