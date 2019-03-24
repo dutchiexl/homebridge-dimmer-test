@@ -15,7 +15,7 @@ module.exports = function (homebridge) {
 
     // For platform plugin to be considered as dynamic platform plugin,
     // registerPlatform(pluginName, platformName, constructor, dynamic), dynamic must be true
-    // homebridge.registerAccessory("homebridge-neal-dimmer", "neal-dimmer", NealimmerAccessory);
+    homebridge.registerAccessory("homebridge-neal-dimmer", "neal-dimmer", NealimmerAccessory);
     homebridge.registerAccessory("homebridge-neal-dimmer", "neal-fireplace", NealFirePlace);
 };
 
@@ -112,5 +112,9 @@ NealimmerAccessory.prototype.setSaturation = function (saturation, callback, con
 };
 
 NealimmerAccessory.prototype.getServices = function () {
+    return [this.service];
+};
+
+NealFirePlace.prototype.getServices = function () {
     return [this.FireplaceService];
 };
