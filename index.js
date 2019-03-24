@@ -16,28 +16,11 @@ module.exports = function (homebridge) {
     // For platform plugin to be considered as dynamic platform plugin,
     // registerPlatform(pluginName, platformName, constructor, dynamic), dynamic must be true
     homebridge.registerAccessory("homebridge-neal-dimmer", "neal-dimmer", NealimmerAccessory);
+    homebridge.registerAccessory("homebridge-neal-dimmer", "neal-fireplace", NealFirePlace);
 };
 
-function NealimmerAccessory(log, config) {
-    this.log = log;
-    this.service = new Service.Lightbulb(this.name);
+function NealFirePlace(log, config) {
     this.FireplaceService = new Service.HeaterCooler(this.name);
-
-    this.service.getCharacteristic(Characteristic.On)
-        .on('get', this.getStatus.bind(this))
-        .on('set', this.setStatus.bind(this));
-
-    this.service.getCharacteristic(Characteristic.Brightness)
-        .on('get', this.getBrightness.bind(this))
-        .on('set', this.setBrightness.bind(this));
-
-    this.service.getCharacteristic(Characteristic.Hue)
-        .on('get', this.getHue.bind(this))
-        .on('set', this.setHue.bind(this));
-
-    this.service.getCharacteristic(Characteristic.Saturation)
-        .on('get', this.getSaturation.bind(this))
-        .on('set', this.setSaturation.bind(this));
 
     this.FireplaceService.getCharacteristic(Characteristic.Active)
         .on('get', this.getStatus.bind(this))
@@ -54,6 +37,27 @@ function NealimmerAccessory(log, config) {
     this.FireplaceService.getCharacteristic(Characteristic.CurrentTemperature)
         .on('get', this.getStatus.bind(this))
         .on('set', this.setStatus.bind(this));
+}
+
+function NealimmerAccessory(log, config) {
+    this.log = log;
+    this.service = new Service.Lightbulb(this.name);
+
+    this.service.getCharacteristic(Characteristic.On)
+        .on('get', this.getStatus.bind(this))
+        .on('set', this.setStatus.bind(this));
+
+    this.service.getCharacteristic(Characteristic.Brightness)
+        .on('get', this.getBrightness.bind(this))
+        .on('set', this.setBrightness.bind(this));
+
+    this.service.getCharacteristic(Characteristic.Hue)
+        .on('get', this.getHue.bind(this))
+        .on('set', this.setHue.bind(this));
+
+    this.service.getCharacteristic(Characteristic.Saturation)
+        .on('get', this.getSaturation.bind(this))
+        .on('set', this.setSaturation.bind(this));
 }
 
 NealimmerAccessory.prototype.getStatus = function (callback) {
