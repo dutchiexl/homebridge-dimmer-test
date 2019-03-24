@@ -38,6 +38,10 @@ function NealFirePlace(log, config) {
     this.FireplaceService.getCharacteristic(Characteristic.CurrentTemperature)
         .on('get', this.getCurrentTemperature.bind(this))
         .on('set', this.setCurrentTemperature.bind(this));
+
+    this.FireplaceService.getCharacteristic(Characteristic.TargetHeaterCoolerState)
+        .on('get', this.getCurrentTemperature.bind(this))
+        .on('set', this.setCurrentTemperature.bind(this));
 }
 
 NealFirePlace.prototype.getCurrentHeaterCoolerState = function (callback) {
@@ -62,7 +66,7 @@ NealFirePlace.prototype.setTargetHeaterCoolerState = function (status, callback,
 
 NealFirePlace.prototype.getCurrentTemperature = function (callback) {
     console.log(callback);
-    callback(null, 22);
+    callback(null, parseFloat("22"));
 };
 
 NealFirePlace.prototype.setCurrentTemperature = function (status, callback, context) {
