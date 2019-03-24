@@ -39,39 +39,49 @@ function NealFirePlace(log, config) {
         .on('get', this.getCurrentTemperature.bind(this))
         .on('set', this.setCurrentTemperature.bind(this));
 
-    this.FireplaceService.getCharacteristic(Characteristic.TargetHeaterCoolerState)
-        .on('get', this.getCurrentTemperature.bind(this))
-        .on('set', this.setCurrentTemperature.bind(this));
+    this.FireplaceService.getCharacteristic(Characteristic.HeatingThresholdTemperature)
+        .on('get', this.getHeatingThresholdTemperature.bind(this))
+        .on('set', this.setHeatingThresholdTemperature.bind(this));
+
 }
 
 NealFirePlace.prototype.getCurrentHeaterCoolerState = function (callback) {
     console.log(callback);
-    callback(null, 2);
+    callback(2, 2);
 };
 
 NealFirePlace.prototype.setCurrentHeaterCoolerState = function (status, callback, context) {
     console.log(callback);
-    callback(null, 2);
+    callback(2, 2);
 };
 
 NealFirePlace.prototype.getTargetHeaterCoolerState = function (callback) {
     console.log(callback);
-    callback(null, 1);
+    callback(1, 1);
 };
 
 NealFirePlace.prototype.setTargetHeaterCoolerState = function (status, callback, context) {
     console.log(callback);
-    callback(null, 1);
+    callback(1, 1);
 };
 
 NealFirePlace.prototype.getCurrentTemperature = function (callback) {
     console.log(callback);
-    callback(null, parseFloat("22"));
+    callback(parseFloat("22"), parseFloat("22"));
 };
 
 NealFirePlace.prototype.setCurrentTemperature = function (status, callback, context) {
     console.log(callback);
-    callback(null, 22);
+    callback(parseFloat("22"), parseFloat("22"));
+};
+
+NealFirePlace.prototype.getHeatingThresholdTemperature = function (callback) {
+    console.log(callback);
+    callback(parseFloat("22"), parseFloat("22"));
+};
+
+NealFirePlace.prototype.setHeatingThresholdTemperature = function (status, callback, context) {
+    callback(parseFloat("22"), parseFloat("22"));
 };
 
 NealFirePlace.prototype.getStatus = function (callback) {
