@@ -20,6 +20,7 @@ module.exports = function (homebridge) {
 };
 
 function NealFirePlace(log, config) {
+    this.log = log;
     this.FireplaceService = new Service.HeaterCooler(this.name);
 
     this.FireplaceService.getCharacteristic(Characteristic.Active)
@@ -59,6 +60,16 @@ function NealimmerAccessory(log, config) {
         .on('get', this.getSaturation.bind(this))
         .on('set', this.setSaturation.bind(this));
 }
+
+NealFirePlace.prototype.getStatus = function (callback) {
+    console.log(callback);
+    callback(null, 1);
+};
+
+NealFirePlace.prototype.setStatus = function (status, callback, context) {
+    console.log('Status: ' + status);
+    callback(null, 50);
+};
 
 NealimmerAccessory.prototype.getStatus = function (callback) {
     console.log(callback);
