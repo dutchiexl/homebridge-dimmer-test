@@ -81,7 +81,7 @@ NealFirePlace.prototype.getStatus = function (callback) {
 
 NealFirePlace.prototype.setStatus = function (status, callback, context) {
     console.log('Status: ' + status);
-    callback(null, 50);
+    callback(null, 1);
 };
 
 function NealimmerAccessory(log, config) {
