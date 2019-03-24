@@ -28,17 +28,57 @@ function NealFirePlace(log, config) {
         .on('set', this.setStatus.bind(this));
 
     this.FireplaceService.getCharacteristic(Characteristic.CurrentHeaterCoolerState)
-        .on('get', this.getStatus.bind(this))
-        .on('set', this.setStatus.bind(this));
+        .on('get', this.getCurrentHeaterCoolerState.bind(this))
+        .on('set', this.setCurrentHeaterCoolerState.bind(this));
 
     this.FireplaceService.getCharacteristic(Characteristic.TargetHeaterCoolerState)
-        .on('get', this.getStatus.bind(this))
-        .on('set', this.setStatus.bind(this));
+        .on('get', this.getTargetHeaterCoolerState.bind(this))
+        .on('set', this.setTargetHeaterCoolerState.bind(this));
 
     this.FireplaceService.getCharacteristic(Characteristic.CurrentTemperature)
-        .on('get', this.getStatus.bind(this))
-        .on('set', this.setStatus.bind(this));
+        .on('get', this.getCurrentTemperature.bind(this))
+        .on('set', this.setCurrentTemperature.bind(this));
 }
+
+NealFirePlace.prototype.getCurrentHeaterCoolerState = function (callback) {
+    console.log(callback);
+    callback(null, 2);
+};
+
+NealFirePlace.prototype.setCurrentHeaterCoolerState = function (status, callback, context) {
+    console.log(callback);
+    callback(null, 2);
+};
+
+NealFirePlace.prototype.getTargetHeaterCoolerState = function (callback) {
+    console.log(callback);
+    callback(null, 1);
+};
+
+NealFirePlace.prototype.setTargetHeaterCoolerState = function (status, callback, context) {
+    console.log(callback);
+    callback(null, 1);
+};
+
+NealFirePlace.prototype.getCurrentTemperature = function (callback) {
+    console.log(callback);
+    callback(null, 22);
+};
+
+NealFirePlace.prototype.setCurrentTemperature = function (status, callback, context) {
+    console.log(callback);
+    callback(null, 22);
+};
+
+NealFirePlace.prototype.getStatus = function (callback) {
+    console.log(callback);
+    callback(null, 1);
+};
+
+NealFirePlace.prototype.setStatus = function (status, callback, context) {
+    console.log('Status: ' + status);
+    callback(null, 50);
+};
 
 function NealimmerAccessory(log, config) {
     this.log = log;
@@ -61,15 +101,6 @@ function NealimmerAccessory(log, config) {
         .on('set', this.setSaturation.bind(this));
 }
 
-NealFirePlace.prototype.getStatus = function (callback) {
-    console.log(callback);
-    callback(null, 1);
-};
-
-NealFirePlace.prototype.setStatus = function (status, callback, context) {
-    console.log('Status: ' + status);
-    callback(null, 50);
-};
 
 NealimmerAccessory.prototype.getStatus = function (callback) {
     console.log(callback);
